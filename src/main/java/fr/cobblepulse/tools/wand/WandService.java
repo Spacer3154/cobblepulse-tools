@@ -57,15 +57,31 @@ public final class WandService {
             if (player.isSpectator()) return InteractionResult.PASS;
             ItemStack st = player.getItemInHand(hand);
             if (ModContent.EDITOR_WAND == null || !st.is(ModContent.EDITOR_WAND)) return InteractionResult.PASS;
-            if (!(entity instanceof PokemonEntity pe)) return InteractionResult.PASS;
+            if (!(entity instanceof PokemonEntity) && !(entity instanceof net.minecraft.world.entity.player.Player)) return InteractionResult.PASS;
             if (world.isClientSide) return InteractionResult.SUCCESS;
             if (!(player instanceof ServerPlayer sp)) return InteractionResult.PASS;
-            long t = world.getGameTime();
-            Long last = LAST_USE.put(sp.getUUID(), t);
-            if (last != null && t - last >= 0 && t - last < 5) return InteractionResult.SUCCESS;
-            openForEntity(sp, pe);
+            if (!debounce(sp)) return InteractionResult.SUCCESS;
+            if (entity instanceof PokemonEntity pe) openForEntity(sp, pe);
+            else if (entity instanceof ServerPlayer target) PartyService.open(sp, target);
             return InteractionResult.SUCCESS;
         });
+        PartyService.register();
+    }
+
+    /** Un clic produit parfois deux paquets (interactAt + interact) : un seul traitement par 5 ticks. */
+    private static boolean debounce(ServerPlayer sp) {
+        long t = sp.level().getGameTime();
+        Long last = LAST_USE.put(sp.getUUID(), t);
+        return last == null || t - last < 0 || t - last >= 5;
+    }
+
+    /** Clic droit dans le vide : sa propre equipe. */
+    public static void useInAir(ServerPlayer sp) {
+        if (!Perms.isAdmin(sp)) {
+            PartyService.confiscate(sp);
+            return;
+        }
+        if (debounce(sp)) PartyService.open(sp, sp);
     }
 
     public static MinecraftServer server() {
@@ -83,7 +99,7 @@ public final class WandService {
 
     public static void openForEntity(ServerPlayer admin, PokemonEntity pe) {
         if (!Perms.isAdmin(admin)) {
-            msg(admin, "Cette baguette est réservée au staff (" + ToolsConfig.get().admin_permission + ").", ChatFormatting.RED);
+            PartyService.confiscate(admin);
             return;
         }
         Pokemon pk = pe.getPokemon();
@@ -129,6 +145,12 @@ public final class WandService {
         o.addProperty("token", s.token());
         o.addProperty("kind", kind(pk, s));
         o.addProperty("owner", s.ownerName());
+        o.addProperty("owner_uuid", s.ownerUuid() == null ? "" : s.ownerUuid().toString());
+        try {
+            o.addProperty("showdown", ShowdownSets.export(pk));
+        } catch (Throwable t) {
+            o.addProperty("showdown", "");
+        }
         o.addProperty("battling", inBattle(pk, s));
         return o;
     }
@@ -173,6 +195,10 @@ public final class WandService {
     }
 
     public static void handleAction(ServerPlayer admin, String action, JsonObject o) {
+        if (action.startsWith("party_")) {
+            PartyService.handle(admin, action, o);
+            return;
+        }
         Session s = SESSIONS.get(admin.getUUID());
         if (s == null) return;
         int token = o.has("token") ? o.get("token").getAsInt() : -1;
@@ -187,6 +213,7 @@ public final class WandService {
         if (!Perms.isAdmin(admin)) {
             SESSIONS.remove(admin.getUUID());
             msg(admin, "Permission retirée : édition annulée.", ChatFormatting.RED);
+            PartyService.confiscate(admin);
             return;
         }
         Pokemon pk = resolve(s);
@@ -201,13 +228,36 @@ public final class WandService {
                 log(admin, s, pk, "soigné");
                 reply(admin, s, pk, true, java.util.List.of("soigné"), java.util.List.of());
             }
-            case "apply" -> {
+            case "apply", "import" -> {
                 if (inBattle(pk, s) && !ToolsConfig.get().allow_edit_in_battle) {
                     reply(admin, s, pk, false, java.util.List.of(), java.util.List.of("Ce Pokémon est en combat : réessaie après le combat."));
                     return;
                 }
-                JsonObject data = o.has("data") && o.get("data").isJsonObject() ? o.getAsJsonObject("data") : new JsonObject();
+                JsonObject data;
+                java.util.List<String> pre = new java.util.ArrayList<>();
+                if (action.equals("import")) {
+                    java.util.List<String> sets = ShowdownSets.splitTeam(o.has("text") ? o.get("text").getAsString() : "");
+                    if (sets.size() != 1) {
+                        reply(admin, s, pk, false, java.util.List.of(), java.util.List.of(sets.isEmpty() ? "Rien à importer." : "Colle un seul set (ici " + sets.size() + ")."));
+                        return;
+                    }
+                    ShowdownSets.Parsed p = ShowdownSets.parse(sets.get(0));
+                    pre.addAll(p.errors());
+                    if (!p.ok()) {
+                        reply(admin, s, pk, false, java.util.List.of(), pre);
+                        return;
+                    }
+                    data = p.data();
+                    int max = PokemonData.maxLevel(pk);
+                    if (data.has("level") && data.get("level").getAsInt() > max) {
+                        pre.add("Niveau ramené à " + max + " (maximum du serveur)");
+                        data.addProperty("level", max);
+                    }
+                } else {
+                    data = o.has("data") && o.get("data").isJsonObject() ? o.getAsJsonObject("data") : new JsonObject();
+                }
                 PokemonData.Result r = PokemonData.apply(pk, data);
+                r.errors.addAll(0, pre);
                 PokemonEntity e = pk.getEntity();
                 if (e == null && s.entityUuid() != null && s.dimension() != null && server.getLevel(s.dimension()) != null
                         && server.getLevel(s.dimension()).getEntity(s.entityUuid()) instanceof PokemonEntity pe) e = pe;

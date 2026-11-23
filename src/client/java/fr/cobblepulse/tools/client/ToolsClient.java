@@ -35,6 +35,14 @@ public final class ToolsClient implements ClientModInitializer {
             switch (kind) {
                 case "config" -> ToolsConfig.applyFromServer(o.get("speed").getAsDouble(), o.get("centering").getAsDouble());
                 case "editor_open" -> mc.setScreen(new EditorScreen(o));
+                case "party_open" -> {
+                    if (mc.screen instanceof PartyScreen ps && o.has("changed")) ps.update(o);
+                    else {
+                        PartyScreen ps = new PartyScreen(o);
+                        mc.setScreen(ps);
+                        if (o.has("changed")) ps.update(o);
+                    }
+                }
                 case "editor_result" -> {
                     if (mc.screen instanceof EditorScreen e) e.onResult(o);
                     else if (mc.player != null) {

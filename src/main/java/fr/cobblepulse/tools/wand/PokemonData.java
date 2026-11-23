@@ -160,7 +160,16 @@ public final class PokemonData {
     public static Species findSpecies(String raw) {
         ResourceLocation id = rl(raw, "cobblemon");
         Species s = id == null ? null : PokemonSpecies.getByIdentifier(id);
-        if (s == null && raw != null && !raw.isBlank()) s = PokemonSpecies.getByName(raw.trim().toLowerCase(Locale.ROOT));
+        if (s == null && raw != null && !raw.isBlank()) {
+            String n = raw.trim().toLowerCase(Locale.ROOT);
+            if (n.contains(":")) n = n.substring(n.indexOf(':') + 1);
+            if (n.matches("[a-z0-9_./-]+")) {
+                try {
+                    s = PokemonSpecies.getByName(n);
+                } catch (Exception ignored) {
+                }
+            }
+        }
         return s;
     }
 

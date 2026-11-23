@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Baguette d'edition de Pokemon (outil staff) : clic droit sur un Pokemon (sauvage, sorti par un joueur) pour ouvrir
- * l'editeur. L'interaction elle-meme est interceptee dans {@link WandService} avant celle du Pokemon.
+ * l'editeur ; clic droit sur un joueur : son equipe ; clic dans le vide : sa propre equipe. L'interaction elle-meme est interceptee dans {@link WandService} avant celle du Pokemon.
  */
 public class PokemonEditorWand extends Item {
     public PokemonEditorWand(Properties props) {
@@ -28,10 +28,9 @@ public class PokemonEditorWand extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
-        if (!level.isClientSide) {
-            player.displayClientMessage(Component.translatable("message.cobblepulse_tools.wand_hint").withStyle(ChatFormatting.GRAY), true);
-        }
-        return InteractionResultHolder.pass(player.getItemInHand(hand));
+        // clic dans le vide : sa propre equipe
+        if (!level.isClientSide && player instanceof net.minecraft.server.level.ServerPlayer sp) WandService.useInAir(sp);
+        return InteractionResultHolder.success(player.getItemInHand(hand));
     }
 
     @Override

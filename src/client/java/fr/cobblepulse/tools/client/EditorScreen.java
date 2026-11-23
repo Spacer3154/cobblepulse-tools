@@ -370,9 +370,23 @@ public final class EditorScreen extends Screen {
             case 2 -> buildMoves();
             default -> buildMisc();
         }
+        // Showdown : import (remplace le Pokemon edite) et export dans le presse-papiers
+        int sx = px + pw - 8;
+        sx -= 66;
+        addRenderableWidget(Button.builder(Component.literal("Export SD"), b -> exportShowdown()).bounds(sx, py + 20, 66, 18).build());
+        sx -= 70;
+        addRenderableWidget(Button.builder(Component.literal("Import SD"), b -> minecraft.setScreen(new ShowdownScreen(this,
+                "Importer un set Showdown (remplace ce Pokémon)", "Colle un set Showdown…", this::importShowdown))).bounds(sx, py + 20, 66, 18).build());
         int by = py + ph - 24;
         addRenderableWidget(Button.builder(Component.literal("Soigner"), b -> action("heal")).bounds(px + 8, by, 70, 18).build());
         addRenderableWidget(Button.builder(Component.literal("Recharger"), b -> action("refresh")).bounds(px + 82, by, 74, 18).build());
+        if (!str(data, "owner_uuid").isEmpty()) {
+            addRenderableWidget(Button.builder(Component.literal("Équipe"), b -> {
+                JsonObject o = new JsonObject();
+                o.addProperty("owner", str(data, "owner_uuid"));
+                ToolsClient.send("party_open", o);
+            }).bounds(px + 160, by, 64, 18).build());
+        }
         addRenderableWidget(Button.builder(Component.literal("§aAppliquer"), b -> apply()).bounds(px + pw - 8 - 170, by, 84, 18).build());
         addRenderableWidget(Button.builder(Component.literal("Fermer"), b -> onClose()).bounds(px + pw - 8 - 82, by, 82, 18).build());
         rebuildModel();
@@ -573,6 +587,28 @@ public final class EditorScreen extends Screen {
         }
     }
 
+    String exportText() {
+        return str(data, "showdown");
+    }
+
+    void exportShowdown() {
+        String t = exportText();
+        if (t.isEmpty()) {
+            setStatus(List.of("Export indisponible."), UiKit.ERROR);
+            return;
+        }
+        minecraft.keyboardHandler.setClipboard(t);
+        setStatus(List.of("Set Showdown copié dans le presse-papiers."), UiKit.OK);
+    }
+
+    void importShowdown(String text) {
+        JsonObject o = new JsonObject();
+        o.addProperty("token", token);
+        o.addProperty("text", text);
+        setStatus(List.of("Import…"), UiKit.MUTED);
+        ToolsClient.send("import", o);
+    }
+
     public void apply() {
         JsonObject o = new JsonObject();
         o.addProperty("token", token);
@@ -724,13 +760,12 @@ public final class EditorScreen extends Screen {
     }
 
     private void renderMoves(GuiGraphics g, int mx, int my) {
-        g.drawString(font, "Emplacement choisi : " + (moveSlot + 1) + " (clic dans la liste pour le remplir)", cx, cy + 2, UiKit.MUTED, false);
+        g.drawString(font, "Emplacement " + (moveSlot + 1) + " · clic dans la liste", cx, cy + 2, UiKit.MUTED, false);
         for (int i = 0; i < 4; i++) {
             int y = cy + 14 + i * 24;
             String id = moveId(moves[i]);
             MoveTemplate m = id.isEmpty() ? null : Moves.getByName(id);
-            String label = id.isEmpty() ? "—" : m == null ? "inconnue" : m.getDisplayName().getString() + " · " + m.getElementalType().getDisplayName().getString()
-                    + " · " + m.getPp() + " PP";
+            String label = id.isEmpty() ? "—" : m == null ? "inconnue" : m.getDisplayName().getString() + " · " + m.getPp() + " PP";
             g.drawString(font, font.plainSubstrByWidth(label, 120), cx + 152, y + 5, id.isEmpty() ? UiKit.MUTED : m == null ? UiKit.ERROR : UiKit.TEXT, false);
         }
         int rx = cx + 280, ry = cy + 20, rw = px + pw - 8 - rx, rh = ch - 20;

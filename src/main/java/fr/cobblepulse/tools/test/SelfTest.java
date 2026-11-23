@@ -241,6 +241,44 @@ public final class SelfTest {
         }
     }
 
+    static final String SET = "Sparky (Raichu-Alola) (F) @ Leftovers\nAbility: Surge Surfer\nLevel: 60\nShiny: Yes\nTera Type: Electric\n"
+            + "EVs: 252 SpA / 4 SpD / 252 Spe\nTimid Nature\nIVs: 0 Atk\n- Thunderbolt\n- Psychic\n- Focus Blast\n- Nasty Plot";
+
+    private static void showdownTests() {
+        var p = fr.cobblepulse.tools.wand.ShowdownSets.parse(SET);
+        JsonObject d = p.data();
+        check("showdown_lecture", p.ok() && p.errors().isEmpty() && "cobblemon:raichu".equals(d.get("species").getAsString())
+                        && "alola".equals(d.get("form").getAsString()) && d.get("level").getAsInt() == 60 && d.getAsJsonObject("ivs").get("atk").getAsInt() == 0
+                        && d.getAsJsonObject("evs").get("spa").getAsInt() == 252 && d.getAsJsonArray("moves").size() == 4
+                        && "cobblemon:leftovers".equals(d.get("held").getAsString()) && "female".equals(d.get("gender").getAsString()),
+                d + " " + p.errors());
+        List<String> errs = new ArrayList<>();
+        Pokemon x = fr.cobblepulse.tools.wand.PartyService.create(d, errs);
+        PokemonData.Result r = x == null ? null : PokemonData.apply(x, d);
+        check("showdown_creation", x != null && r.errors.isEmpty() && errs.isEmpty() && x.getSpecies().getName().equalsIgnoreCase("raichu")
+                        && "alola".equals(PokemonData.formId(x)) && x.getLevel() == 60 && x.getShiny() && x.getAbility().getName().equals("surgesurfer")
+                        && x.getNickname() != null && x.getNickname().getString().equals("Sparky") && x.getNature().getName().getPath().equals("timid")
+                        && x.getMoveSet().getMoves().size() == 4 && x.getTeraType().getId().getPath().equals("electric"),
+                x == null ? String.valueOf(errs) : describe(x).get() + " " + (r == null ? "" : r.errors));
+        if (x != null) {
+            String exp = fr.cobblepulse.tools.wand.ShowdownSets.export(x);
+            var p2 = fr.cobblepulse.tools.wand.ShowdownSets.parse(exp);
+            boolean same = p2.ok() && p2.errors().isEmpty();
+            for (String k : new String[]{"species", "form", "level", "nature", "ability", "held", "tera", "nickname", "gender"}) {
+                same &= d.has(k) == p2.data().has(k) && (!d.has(k) || d.get(k).equals(p2.data().get(k)));
+            }
+            same &= d.get("ivs").equals(p2.data().get("ivs")) && d.get("evs").equals(p2.data().get("evs")) && d.get("moves").equals(p2.data().get("moves"));
+            check("showdown_export_relu_identique", same, exp.replace('\n', '|') + " -> " + p2.data() + " " + p2.errors());
+        }
+        String team = "=== [gen9] Équipe ===\n\n" + SET + "\n\nGarchomp @ Choice Scarf\nAbility: Rough Skin\nEVs: 252 Atk / 4 SpD / 252 Spe\nJolly Nature\n- Earthquake\n- Outrage\n";
+        var sets = fr.cobblepulse.tools.wand.ShowdownSets.splitTeam(team);
+        var g = sets.size() == 2 ? fr.cobblepulse.tools.wand.ShowdownSets.parse(sets.get(1)) : null;
+        check("showdown_equipe", sets.size() == 2 && g != null && g.ok() && g.errors().isEmpty() && g.data().get("level").getAsInt() == 100
+                && "cobblemon:choice_scarf".equals(g.data().get("held").getAsString()), sets.size() + " " + (g == null ? "" : g.data() + " " + g.errors()));
+        var bad = fr.cobblepulse.tools.wand.ShowdownSets.parse("Pasunpokemon @ Leftovers\n- Tackle");
+        check("showdown_espece_inconnue", !bad.ok() && !bad.errors().isEmpty(), String.valueOf(bad.errors()));
+    }
+
     private static Supplier<String> describe(Pokemon pk) {
         return () -> pk.getSpecies().getName() + " nv" + pk.getLevel() + (pk.getShiny() ? " shiny" : "") + " " + pk.getNature().getName().getPath()
                 + " " + pk.getAbility().getName() + " " + pk.getMoveSet().getMoves().stream().map(m -> m.getName()).toList();
@@ -295,7 +333,9 @@ public final class SelfTest {
                         && pk.getCaughtBall().getName().getPath().equals("ultra_ball") && pk.getNickname() != null
                         && pk.getNickname().getString().equals("Testeur") && pk.getTeraType().getId().getPath().equals("fairy")
                         && pk.getFriendship() == 200 && pk.getDmaxLevel() == 5 && pk.getGmaxFactor(),
-                describe(pk).get() + " erreurs=" + r.errors);
+                describe(pk).get() + " iv=" + ivOk + " ev=" + pk.getEvs().getOrDefault(PokemonData.stat("spa")) + "/" + pk.getEvs().getOrDefault(PokemonData.stat("hp"))
+                        + " held=" + pk.heldItem() + " ball=" + pk.getCaughtBall().getName() + " nick=" + pk.getNickname() + " tera=" + pk.getTeraType().getId()
+                        + " friend=" + pk.getFriendship() + " dmax=" + pk.getDmaxLevel() + " gmax=" + pk.getGmaxFactor() + " changed=" + r.changed + " erreurs=" + r.errors);
         pe.setPokemon(pk);
         at(tick + 10, () -> {
             String shown = String.valueOf(pe.getEntityData().get(PokemonEntity.Companion.getSPECIES()));
@@ -329,6 +369,7 @@ public final class SelfTest {
                         && v.getGender().name().equals("FEMALE") && v.getMintedNature() != null && v.getAbility().getName().equals("levitate")
                         && v.getAbility().getForced(),
                 PokemonData.formId(v) + " " + v.getAspects() + " " + v.getGender() + " " + v.getAbility().getName() + " " + rf.errors);
+        showdownTests();
         JsonObject back = new JsonObject();
         back.addProperty("form", "");
         back.addProperty("minted", "");
