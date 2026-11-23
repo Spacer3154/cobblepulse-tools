@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "cobblepulse_tools",
+  "version": "${version}",
+  "name": "CobblePulse Tools",
+  "description": "Outils de CobblePulse inspirés de Pixelmon : Movement Plate, Stick Plate et Baguette d'édition de Pokémon (staff).",
+  "authors": ["CobblePulse"],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/cobblepulse_tools/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["fr.cobblepulse.tools.CobblePulseTools"],
+    "client": ["fr.cobblepulse.tools.client.ToolsClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*",
+    "fabric-language-kotlin": "*",
+    "cobblemon": ">=1.8.0"
+  },
+  "recommends": {
+    "luckperms": "*"
+  }
+}

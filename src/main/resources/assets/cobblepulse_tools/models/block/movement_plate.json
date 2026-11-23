@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "particle": "cobblepulse_tools:block/movement_plate",
+    "wool": "cobblepulse_tools:block/movement_plate"
+  }
+}

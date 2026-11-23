@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "cobblepulse_tools:item/pokemon_editor_wand"
+  }
+}

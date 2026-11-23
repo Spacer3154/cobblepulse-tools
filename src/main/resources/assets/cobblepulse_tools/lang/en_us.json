@@ -1,0 +1,11 @@
+{
+  "block.cobblepulse_tools.movement_plate": "Movement Plate",
+  "block.cobblepulse_tools.stick_plate": "Stick Plate",
+  "item.cobblepulse_tools.pokemon_editor_wand": "Pokémon Editor",
+  "item.cobblepulse_tools.pokemon_editor_wand.tooltip1": "Right-click a Pokémon to edit it",
+  "item.cobblepulse_tools.pokemon_editor_wand.tooltip2": "Player party / PC: /cptools editer",
+  "item.cobblepulse_tools.pokemon_editor_wand.tooltip3": "Staff only",
+  "itemGroup.cobblepulse_tools": "CobblePulse Tools",
+  "message.cobblepulse_tools.loop_refused": "§cThis Movement Plate would close a loop: leave a gap at the end of the chain.",
+  "message.cobblepulse_tools.wand_hint": "Aim at a Pokémon and right-click to edit it."
+}

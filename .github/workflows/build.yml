@@ -1,0 +1,66 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Discover versions (Modrinth)
+        run: |
+          mkdir -p out
+          python3 ci/discover.py out/discover > out/discover.log 2>&1 || true
+
+      - name: Build
+        id: build
+        run: |
+          mkdir -p out
+          set +e
+          ./gradlew build --stacktrace --no-daemon > out/build.log 2>&1
+          status=$?
+          echo "status=$status" >> "$GITHUB_OUTPUT"
+          grep -E "error:|FAILURE|What went wrong" -A3 out/build.log > out/build-errors.txt || true
+          for j in build/libs/*.jar; do case "$j" in *-sources.jar) ;; *) cp "$j" out/ ;; esac; done 2>/dev/null || true
+          exit 0
+
+      - name: Server self-tests
+        if: steps.build.outputs.status == '0'
+        timeout-minutes: 30
+        run: python3 ci/smoke.py out || true
+
+      - name: Live test (vrai client connecte au serveur)
+        if: steps.build.outputs.status == '0'
+        timeout-minutes: 40
+        run: python3 ci/live.py out || true
+
+      - name: Publish CI outputs to branch ci-output
+        if: always()
+        run: |
+          cd out
+          echo "sha=${GITHUB_SHA} build=${{ steps.build.outputs.status }} run=${GITHUB_RUN_ID}" > STATUS
+          git init -q -b ci-output
+          git config user.name "tools-ci"
+          git config user.email "ci@users.noreply.github.com"
+          git add -A
+          git commit -qm "CI output ${GITHUB_SHA}"
+          git push -qf "https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" ci-output
