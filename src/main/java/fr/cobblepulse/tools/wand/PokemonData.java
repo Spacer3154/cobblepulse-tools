@@ -299,7 +299,8 @@ public final class PokemonData {
             if (fr < 0 || fr > 255) r.errors.add("Bonheur " + fr + " hors limites (0 à 255)");
             else {
                 pk.setFriendship(fr, true);
-                r.changed.add("bonheur → " + fr);
+                if (pk.getFriendship() != fr) r.errors.add("Bonheur " + fr + " refusé par Cobblemon");
+                else r.changed.add("bonheur → " + fr);
             }
         }
         Integer dmax = num(o, "dmax");
@@ -307,13 +308,15 @@ public final class PokemonData {
             if (dmax < 0 || dmax > 10) r.errors.add("Niveau Dynamax " + dmax + " hors limites (0 à 10)");
             else {
                 pk.setDmaxLevel(dmax);
-                r.changed.add("Dynamax → " + dmax);
+                if (pk.getDmaxLevel() != dmax) r.errors.add("Niveau Dynamax " + dmax + " refusé par Cobblemon");
+                else r.changed.add("Dynamax → " + dmax);
             }
         }
         Boolean gmax = bool(o, "gmax");
         if (gmax != null && gmax != pk.getGmaxFactor()) {
             pk.setGmaxFactor(gmax);
-            r.changed.add(gmax ? "facteur Gigamax" : "sans facteur Gigamax");
+            if (pk.getGmaxFactor() != gmax) r.errors.add("Facteur Gigamax impossible pour " + pk.getSpecies().getName());
+            else r.changed.add(gmax ? "facteur Gigamax" : "sans facteur Gigamax");
         }
         Boolean trade = bool(o, "tradeable");
         if (trade != null && trade != pk.getTradeable()) {

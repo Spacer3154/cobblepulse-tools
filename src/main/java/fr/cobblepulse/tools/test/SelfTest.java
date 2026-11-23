@@ -321,7 +321,6 @@ public final class SelfTest {
         d.addProperty("tera", "cobblemon:fairy");
         d.addProperty("friendship", 200);
         d.addProperty("dmax", 5);
-        d.addProperty("gmax", true);
         PokemonData.Result r = PokemonData.apply(pk, d);
         boolean ivOk = true;
         for (String st : PokemonData.STAT_IDS) ivOk &= pk.getIvs().getOrDefault(PokemonData.stat(st)) == 31;
@@ -332,7 +331,7 @@ public final class SelfTest {
                         && pk.heldItem().is(BuiltInRegistries.ITEM.get(ResourceLocation.parse("cobblemon:leftovers")))
                         && pk.getCaughtBall().getName().getPath().equals("ultra_ball") && pk.getNickname() != null
                         && pk.getNickname().getString().equals("Testeur") && pk.getTeraType().getId().getPath().equals("fairy")
-                        && pk.getFriendship() == 200 && pk.getDmaxLevel() == 5 && pk.getGmaxFactor(),
+                        && pk.getFriendship() == 200 && pk.getDmaxLevel() == 5,
                 describe(pk).get() + " iv=" + ivOk + " ev=" + pk.getEvs().getOrDefault(PokemonData.stat("spa")) + "/" + pk.getEvs().getOrDefault(PokemonData.stat("hp"))
                         + " held=" + pk.heldItem() + " ball=" + pk.getCaughtBall().getName() + " nick=" + pk.getNickname() + " tera=" + pk.getTeraType().getId()
                         + " friend=" + pk.getFriendship() + " dmax=" + pk.getDmaxLevel() + " gmax=" + pk.getGmaxFactor() + " changed=" + r.changed + " erreurs=" + r.errors);
@@ -341,6 +340,14 @@ public final class SelfTest {
             String shown = String.valueOf(pe.getEntityData().get(PokemonEntity.Companion.getSPECIES()));
             check("entite_mise_a_jour", pe.isAlive() && shown.contains("raichu"), shown + " " + pe.getEntityData().get(PokemonEntity.Companion.getASPECTS()));
         });
+        // Gigamax : accepte pour Pikachu, refuse (avec message) pour Raichu qui n'a pas de forme Gigamax
+        Pokemon gp = PokemonProperties.Companion.parse("pikachu level=20").create();
+        JsonObject gj = new JsonObject();
+        gj.addProperty("gmax", true);
+        PokemonData.Result gr = PokemonData.apply(gp, gj);
+        PokemonData.Result gr2 = PokemonData.apply(pk, gj);
+        check("gigamax", gp.getGmaxFactor() && gr.errors.isEmpty() && !pk.getGmaxFactor() && gr2.errors.size() == 1,
+                gp.getGmaxFactor() + " " + gr.errors + " / " + pk.getGmaxFactor() + " " + gr2.errors);
         // valeurs refusees : rien n'est modifie
         JsonObject bad = new JsonObject();
         bad.addProperty("species", "cobblemon:pasunpokemon");

@@ -272,7 +272,7 @@ final class LiveTest {
         // sans la permission, la baguette est detruite (dernier test : le joueur n'est plus operateur)
         STEPS.add(mc -> {
             select(mc, ModContent.EDITOR_WAND);
-            cmd(mc, "deop @s");
+            cmd(mc, "deop " + mc.player.getGameProfile().getName());
         });
         STEPS.add(mc -> check("baguette_detruite_sans_permission", !mc.player.getInventory().contains(st -> st.is(ModContent.EDITOR_WAND)), ""));
     }
