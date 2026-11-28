@@ -200,6 +200,25 @@ public final class SelfTest {
         });
         at(140, () -> check("boucle_arretee_en_jeu", f[0] != null && f[0].isAlive() && PlateBlock.loopBlocked(f[0])
                 && Math.abs(f[0].getX() - fpos[0]) < 0.05 && Math.abs(f[0].getZ() - fpos[1]) < 0.05, f[0] == null ? "" : pos(f[0])));
+        // H : ascenseur. Colonne : y, y+5, y+9 (obstrue), y+12 ; y+30 hors de portee
+        at(12, () -> {
+            BlockPos base = new BlockPos(X0 + 36, Y + 2, Z0 + 14);
+            for (int dy = -1; dy <= 40; dy++) lvl.setBlock(base.above(dy), Blocks.AIR.defaultBlockState(), 2);
+            for (int dy : new int[]{0, 5, 9, 12, 30}) lvl.setBlock(base.above(dy), ModContent.ELEVATOR.defaultBlockState(), 3);
+            lvl.setBlock(base.above(11), Blocks.STONE.defaultBlockState(), 3);
+            int max = 10;
+            BlockPos u1 = fr.cobblepulse.tools.block.ElevatorService.find(lvl, base, true, max, null);
+            BlockPos u2 = fr.cobblepulse.tools.block.ElevatorService.find(lvl, base.above(5), true, max, null);
+            BlockPos u3 = fr.cobblepulse.tools.block.ElevatorService.find(lvl, base.above(12), true, max, null);
+            BlockPos u4 = fr.cobblepulse.tools.block.ElevatorService.find(lvl, base.above(12), true, 18, null);
+            BlockPos d1 = fr.cobblepulse.tools.block.ElevatorService.find(lvl, base.above(12), false, max, null);
+            BlockPos d2 = fr.cobblepulse.tools.block.ElevatorService.find(lvl, base, false, max, null);
+            BlockPos u5 = fr.cobblepulse.tools.block.ElevatorService.find(lvl, base, true, 4, null);
+            check("ascenseur_monte_au_suivant", base.above(5).equals(u1), String.valueOf(u1));
+            check("ascenseur_saute_l_obstrue", base.above(12).equals(u2), String.valueOf(u2));
+            check("ascenseur_portee_max", u3 == null && base.above(30).equals(u4) && u5 == null, u3 + " " + u4 + " " + u5);
+            check("ascenseur_descend", base.above(5).equals(d1) && d2 == null, d1 + " " + d2);
+        });
         // G : baguette (editeur) sur un vrai Pokemon sauvage
         at(20, () -> wandTests(server, lvl));
         at(150, () -> {
@@ -227,7 +246,11 @@ public final class SelfTest {
                 && sp.get().value().getResultItem(server.registryAccess()).is(ModContent.STICK_PLATE_ITEM), sp.map(r -> r.id().toString()).orElse("absente"));
         check("baguette_sans_recette", server.getRecipeManager().getRecipes().stream()
                 .noneMatch(r -> r.value().getResultItem(server.registryAccess()).is(ModContent.EDITOR_WAND)), "");
-        for (Block b : new Block[]{ModContent.MOVEMENT_PLATE, ModContent.STICK_PLATE}) {
+        var ev = server.getRecipeManager().byKey(CobblePulseTools.id("elevator"));
+        check("recette_ascenseur", ev.isPresent() && accepts(ev.get(), Items.IRON_INGOT) && accepts(ev.get(), Items.REDSTONE)
+                && ev.get().value().getIngredients().stream().filter(i -> i.test(new ItemStack(Items.IRON_INGOT))).count() == 8
+                && ev.get().value().getResultItem(server.registryAccess()).is(ModContent.ELEVATOR_ITEM), ev.map(r -> r.id().toString()).orElse("absente"));
+        for (Block b : new Block[]{ModContent.MOVEMENT_PLATE, ModContent.STICK_PLATE, ModContent.ELEVATOR}) {
             String n = BuiltInRegistries.BLOCK.getKey(b).getPath();
             LootTable lt = server.reloadableRegistries().getLootTable(b.getLootTable());
             ServerLevel lvl = server.overworld();
@@ -235,7 +258,7 @@ public final class SelfTest {
             check("loot_" + n, lt != LootTable.EMPTY && drops.size() == 1 && drops.get(0).is(b.asItem()), drops.toString());
             check("pioche_" + n, b.defaultBlockState().is(BlockTags.MINEABLE_WITH_PICKAXE) && b.defaultBlockState().requiresCorrectToolForDrops(), "");
         }
-        for (String n : new String[]{"movement_plate", "stick_plate"}) {
+        for (String n : new String[]{"movement_plate", "stick_plate", "elevator"}) {
             var adv = server.getAdvancements().get(CobblePulseTools.id("recipes/redstone/" + n));
             check("advancement_" + n, adv != null, "");
         }

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cobblepulse_tools:block/elevator"
+    }
+  }
+}

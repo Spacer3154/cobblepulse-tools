@@ -15,6 +15,7 @@ public final class ToolsClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         ClientPlayNetworking.registerGlobalReceiver(ToolsPayloads.Data.TYPE, (payload, ctx) -> ctx.client().execute(() -> handle(payload.kind(), payload.json())));
+        ElevatorInput.install();
         if (Boolean.getBoolean("cobblepulse_tools.livetest")) LiveTest.install();
     }
 
@@ -33,7 +34,8 @@ public final class ToolsClient implements ClientModInitializer {
         }
         try {
             switch (kind) {
-                case "config" -> ToolsConfig.applyFromServer(o.get("speed").getAsDouble(), o.get("centering").getAsDouble());
+                case "config" -> ToolsConfig.applyFromServer(o.get("speed").getAsDouble(), o.get("centering").getAsDouble(),
+                        o.has("elevator_max") ? o.get("elevator_max").getAsInt() : 10);
                 case "editor_open" -> mc.setScreen(new EditorScreen(o));
                 case "party_open" -> {
                     if (mc.screen instanceof PartyScreen ps && o.has("changed")) ps.update(o);

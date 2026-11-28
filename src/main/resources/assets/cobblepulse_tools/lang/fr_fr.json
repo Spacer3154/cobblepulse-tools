@@ -7,5 +7,9 @@
   "item.cobblepulse_tools.pokemon_editor_wand.tooltip3": "Réservé au staff",
   "itemGroup.cobblepulse_tools": "CobblePulse Tools",
   "message.cobblepulse_tools.loop_refused": "§cCette Movement Plate fermerait une boucle : laisse un trou en bout de chaîne.",
-  "message.cobblepulse_tools.wand_hint": "Vise un Pokémon et fais clic droit pour l'éditer."
+  "message.cobblepulse_tools.wand_hint": "Vise un Pokémon et fais clic droit pour l'éditer.",
+  "block.cobblepulse_tools.elevator": "Ascenseur",
+  "block.cobblepulse_tools.elevator.tooltip": "Saute pour monter, accroupis-toi pour descendre (%s blocs max)",
+  "message.cobblepulse_tools.elevator_none_up": "Aucun ascenseur libre au-dessus (%s blocs max)",
+  "message.cobblepulse_tools.elevator_none_down": "Aucun ascenseur libre en dessous (%s blocs max)"
 }

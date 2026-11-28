@@ -17,6 +17,13 @@ Outils de CobblePulse inspirés de Pixelmon, pour Minecraft 1.21.1 (Fabric) et C
 - Ralentit comme le sable des âmes (on peut sauter) et arrête net une entité lancée par une Movement Plate.
 - Recette : 2 sable des âmes, colorant bleu, 2 redstone, lampe à redstone, lingot de fer.
 
+### Ascenseur
+- Debout sur un ascenseur : **sauter** emmène au prochain ascenseur au-dessus, dans la même colonne ; **s'accroupir** emmène au prochain en dessous. Un appui = un étage.
+- Distance maximale entre deux ascenseurs : `elevator_max_distance` dans `tools.json` (10 blocs par défaut, comme Pixelmon ; de 2 à 384).
+- Un ascenseur sans place libre au-dessus (2 blocs pour un joueur) est sauté. Rien au-dessus ou en dessous dans la portée : message dans la barre d'action.
+- Marche aussi avec un tapis posé dessus. Pas en vol créatif, ni à dos de monture.
+- Recette : 8 lingots de fer autour d'une redstone. Pioche nécessaire.
+
 ### Éditeur de Pokémon (baguette, staff)
 - Clic droit sur un Pokémon (sauvage ou sorti par un joueur) : ouvre l'éditeur.
 - Pokémon de l'équipe ou du PC d'un joueur en ligne : `/cptools editer <joueur> <1-6>` ou `/cptools editer <joueur> pc <boîte> <emplacement>`.
@@ -38,6 +45,7 @@ Outils de CobblePulse inspirés de Pixelmon, pour Minecraft 1.21.1 (Fabric) et C
 - `movement_plate_speed` (0.6) : vitesse donnée par une plaque (≈ 6,5 blocs/s). Envoyée aux clients à la connexion et au `reload`.
 - `movement_plate_centering` (0.3) : rappel vers le centre de la plaque.
 - `admin_permission` (`cobblepulse.tools.admin`), `op_level_fallback` (2).
+- `elevator_max_distance` (10) : distance maximale entre deux ascenseurs, en blocs (2 à 384). `elevator_sound` (true).
 - `log_edits` (true), `allow_edit_in_battle` (false).
 
 ## Tests automatiques (GitHub Actions)

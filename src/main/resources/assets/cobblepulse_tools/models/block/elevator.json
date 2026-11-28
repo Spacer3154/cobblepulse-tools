@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "cobblepulse_tools:block/elevator",
+    "top": "cobblepulse_tools:block/elevator",
+    "side": "cobblepulse_tools:block/elevator_side"
+  }
+}

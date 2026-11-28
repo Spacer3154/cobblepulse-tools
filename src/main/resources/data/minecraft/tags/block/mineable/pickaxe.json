@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "cobblepulse_tools:movement_plate",
-    "cobblepulse_tools:stick_plate"
+    "cobblepulse_tools:stick_plate",
+    "cobblepulse_tools:elevator"
   ]
 }

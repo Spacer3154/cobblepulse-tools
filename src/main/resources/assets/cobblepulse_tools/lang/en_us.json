@@ -7,5 +7,9 @@
   "item.cobblepulse_tools.pokemon_editor_wand.tooltip3": "Staff only",
   "itemGroup.cobblepulse_tools": "CobblePulse Tools",
   "message.cobblepulse_tools.loop_refused": "§cThis Movement Plate would close a loop: leave a gap at the end of the chain.",
-  "message.cobblepulse_tools.wand_hint": "Aim at a Pokémon and right-click to edit it."
+  "message.cobblepulse_tools.wand_hint": "Aim at a Pokémon and right-click to edit it.",
+  "block.cobblepulse_tools.elevator": "Elevator",
+  "block.cobblepulse_tools.elevator.tooltip": "Jump to go up, sneak to go down (%s blocks max)",
+  "message.cobblepulse_tools.elevator_none_up": "No free elevator above (%s blocks max)",
+  "message.cobblepulse_tools.elevator_none_down": "No free elevator below (%s blocks max)"
 }

@@ -28,7 +28,10 @@ public final class ToolsNet {
             ctx.server().execute(() -> handle(p, payload.action(), payload.json()));
         });
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> sendConfig(handler.getPlayer()));
-        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> WandService.forget(handler.getPlayer().getUUID()));
+        ServerPlayConnectionEvents.DISCONNECT.register((handler, server) -> {
+            WandService.forget(handler.getPlayer().getUUID());
+            fr.cobblepulse.tools.block.ElevatorService.forget(handler.getPlayer().getUUID());
+        });
     }
 
     public static boolean hasClient(ServerPlayer p) {
@@ -49,10 +52,15 @@ public final class ToolsNet {
         JsonObject o = new JsonObject();
         o.addProperty("speed", ToolsConfig.get().movement_plate_speed);
         o.addProperty("centering", ToolsConfig.get().movement_plate_centering);
+        o.addProperty("elevator_max", ToolsConfig.get().elevator_max_distance);
         send(p, "config", o);
     }
 
     private static void handle(ServerPlayer p, String action, String json) {
+        if ("elevator_up".equals(action) || "elevator_down".equals(action)) {
+            fr.cobblepulse.tools.block.ElevatorService.ride(p, action.equals("elevator_up"));
+            return;
+        }
         JsonObject o;
         try {
             o = json == null || json.isBlank() ? new JsonObject() : JsonParser.parseString(json).getAsJsonObject();

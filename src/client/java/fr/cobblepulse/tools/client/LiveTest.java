@@ -31,6 +31,15 @@ final class LiveTest {
     private static final List<Consumer<Minecraft>> STEPS = new ArrayList<>();
     private static int ticks, start = -1, pass, fail;
     private static double lx, lz;
+    private static net.minecraft.client.KeyMapping pulseKey;
+    private static int pulseLeft;
+
+    /** Appui bref sur une vraie touche (3 ticks), comme un joueur. */
+    private static void pulse(net.minecraft.client.KeyMapping key) {
+        key.setDown(true);
+        pulseKey = key;
+        pulseLeft = 3;
+    }
 
     private LiveTest() {}
 
@@ -268,6 +277,24 @@ final class LiveTest {
             shot(mc, "live_13_editeur_import");
             if (e != null) e.onClose();
         });
+        // ascenseur : y (sol), y+6, y+18 (12 blocs plus haut : hors de portee par defaut, 10)
+        STEPS.add(mc -> {
+            cmd(mc, "setblock " + (X + 25) + " " + Y + " " + (Z + 8) + " cobblepulse_tools:elevator");
+            cmd(mc, "setblock " + (X + 25) + " " + (Y + 6) + " " + (Z + 8) + " cobblepulse_tools:elevator");
+            cmd(mc, "setblock " + (X + 25) + " " + (Y + 18) + " " + (Z + 8) + " cobblepulse_tools:elevator");
+            cmd(mc, "tp @s " + (X + 25) + ".5 " + (Y + 1) + " " + (Z + 8) + ".5 0 20");
+        });
+        STEPS.add(mc -> pulse(mc.options.keyJump));
+        STEPS.add(mc -> {
+            check("ascenseur_saut_monte", Math.abs(mc.player.getY() - (Y + 7)) < 0.1 && mc.player.onGround(), where(mc));
+            shot(mc, "live_14_ascenseur");
+            pulse(mc.options.keyJump);
+        });
+        STEPS.add(mc -> {
+            check("ascenseur_hors_portee_reste", Math.abs(mc.player.getY() - (Y + 7)) < 0.1, where(mc));
+            pulse(mc.options.keyShift);
+        });
+        STEPS.add(mc -> check("ascenseur_accroupi_descend", Math.abs(mc.player.getY() - (Y + 1)) < 0.1, where(mc)));
         STEPS.add(mc -> shot(mc, "live_09_monde"));
         // sans la permission, la baguette est detruite (dernier test : le joueur n'est plus operateur)
         STEPS.add(mc -> {
@@ -280,6 +307,7 @@ final class LiveTest {
     private static void tick(Minecraft mc) {
         if (mc.player == null || mc.level == null || mc.gameMode == null) return;
         ticks++;
+        if (pulseLeft > 0 && --pulseLeft == 0 && pulseKey != null) pulseKey.setDown(false);
         if (start < 0) {
             start = ticks;
             CobblePulseTools.LOG.info(TAG + "connecté, début dans 10 s");

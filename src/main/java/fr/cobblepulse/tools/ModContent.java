@@ -25,6 +25,8 @@ public final class ModContent {
     public static Item MOVEMENT_PLATE_ITEM;
     public static Item STICK_PLATE_ITEM;
     public static Item EDITOR_WAND;
+    public static Block ELEVATOR;
+    public static Item ELEVATOR_ITEM;
 
     private ModContent() {}
 
@@ -44,6 +46,10 @@ public final class ModContent {
                 new BlockItem(MOVEMENT_PLATE, new Item.Properties()));
         STICK_PLATE_ITEM = Registry.register(BuiltInRegistries.ITEM, CobblePulseTools.id("stick_plate"),
                 new BlockItem(STICK_PLATE, new Item.Properties()));
+        ELEVATOR = Registry.register(BuiltInRegistries.BLOCK, CobblePulseTools.id("elevator"),
+                new fr.cobblepulse.tools.block.ElevatorBlock(BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(3.0f, 6.0f)
+                        .requiresCorrectToolForDrops().sound(SoundType.METAL)));
+        ELEVATOR_ITEM = Registry.register(BuiltInRegistries.ITEM, CobblePulseTools.id("elevator"), new BlockItem(ELEVATOR, new Item.Properties()));
         EDITOR_WAND = Registry.register(BuiltInRegistries.ITEM, CobblePulseTools.id("pokemon_editor_wand"),
                 new PokemonEditorWand(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC)));
         CreativeModeTab tab = FabricItemGroup.builder()
@@ -52,6 +58,7 @@ public final class ModContent {
                 .displayItems((params, out) -> {
                     out.accept(MOVEMENT_PLATE_ITEM);
                     out.accept(STICK_PLATE_ITEM);
+                    out.accept(ELEVATOR_ITEM);
                     out.accept(EDITOR_WAND);
                 })
                 .build();

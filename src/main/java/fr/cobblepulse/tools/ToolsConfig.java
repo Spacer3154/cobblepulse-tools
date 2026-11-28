@@ -19,6 +19,10 @@ public final class ToolsConfig {
     public double movement_plate_speed = 0.6;
     /** Recentrage de l'entite sur l'axe de la plaque (0 = aucun, 1 = immediat). */
     public double movement_plate_centering = 0.3;
+    /** Ascenseur : distance maximale (en blocs) entre deux ascenseurs d'une meme colonne (Pixelmon : 10). */
+    public int elevator_max_distance = 10;
+    /** Ascenseur : son de teleportation a l'arrivee. */
+    public boolean elevator_sound = true;
     /** Noeud LuckPerms de la baguette et des commandes /cptools. */
     public String admin_permission = "cobblepulse.tools.admin";
     /** Sans LuckPerms (ou noeud non defini) : niveau d'operateur requis. */
@@ -67,10 +71,11 @@ public final class ToolsConfig {
         movement_plate_centering = Math.max(0, Math.min(1, movement_plate_centering));
         if (admin_permission == null || admin_permission.isBlank()) admin_permission = "cobblepulse.tools.admin";
         op_level_fallback = Math.max(0, Math.min(4, op_level_fallback));
+        elevator_max_distance = Math.max(2, Math.min(384, elevator_max_distance));
     }
 
     /** Valeurs envoyees au client (la poussee du joueur est calculee chez lui). */
-    public static void applyFromServer(double speed, double centering) {
+    public static void applyFromServer(double speed, double centering, int elevatorMax) {
         ToolsConfig c = new ToolsConfig();
         c.movement_plate_speed = speed;
         c.movement_plate_centering = centering;
@@ -78,6 +83,8 @@ public final class ToolsConfig {
         c.op_level_fallback = current.op_level_fallback;
         c.log_edits = current.log_edits;
         c.allow_edit_in_battle = current.allow_edit_in_battle;
+        c.elevator_max_distance = elevatorMax;
+        c.elevator_sound = current.elevator_sound;
         c.normalize();
         current = c;
     }
