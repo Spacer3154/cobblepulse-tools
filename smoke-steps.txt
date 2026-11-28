@@ -1,0 +1,18 @@
+mod fabric-api 0.116.18+1.21.1
+mod fabric-language-kotlin 1.14.2+kotlin.2.4.21
+mod luckperms v5.4.140-fabric
+mod cobblemon 1.8.4F
+mod tools build/libs/cobblepulse-tools-1.0.0.jar
+===== run 1 =====
+server ready: True
+> cptools selftest
+waiting for: SELFTEST DONE -> True
+> cptools reload
+[1] [09:02:51] [Server thread/INFO]: [CobblePulse-Tools][selftest] SELFTEST SUMMARY: 39 pass, 0 fail
+exit code 0
+===== run 2 =====
+server ready: True
+> cptools selftest
+waiting for: SELFTEST DONE -> True
+[2] [09:03:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] SELFTEST SUMMARY: 39 pass, 0 fail
+exit code 0

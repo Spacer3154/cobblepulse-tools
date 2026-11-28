@@ -1,0 +1,28 @@
+mods client : ['Cobblemon-fabric-1.8.4+1.21.1.jar', 'cobblepulse-tools-1.0.0.jar', 'fabric-api-0.116.18+1.21.1.jar', 'fabric-language-kotlin-1.14.2+kotlin.2.4.21.jar']
+preparation du client : code 0
+serveur pret : True
+$ xvfb-run -n 98 -s -screen 0 1280x720x24 /usr/bin/python3 -m portablemc --main-dir /home/runner/work/cobblepulse-tools/cobblepulse-tools/run-prod-client --work-dir /home/runner/work/cobblepulse-tools/cobblepulse-tools/run-prod-client start -u ToolsTest --resolution 1280x720 --jvm /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/21.0.13-2/x64/bin/java --jvm-args=-Xmx3G -Dcobblepulse_tools.livetest=true -s 127.0.0.1 -p 25565 fabric:1.21.1:0.19.5
+client termine (150 s)
+[09:05:50] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS joueur_pousse_puis_arrete - x=3005.20 y=301.06 z=3000.50
+[09:05:56] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS boucle_arretee_pour_le_joueur - x=3020.71 y=301.06 z=3000.93
+[09:06:02] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS pose_dans_le_sens_du_regard - Block{cobblepulse_tools:movement_plate}[facing=east,waterlogged=false]
+[09:06:04] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS pose_refusee_si_boucle - Block{minecraft:air}
+[09:06:10] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS editeur_equipe_ouvert - party
+[09:06:14] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS capacites_apprenables - 85
+[09:06:18] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS edition_equipe_appliquee - 42 shiny=true [✔ niveau → 42, chromatique]
+[09:06:20] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS valeur_refusee_affichee - [✖ Niveau 999 hors limites (1 à 100)]
+[09:06:26] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS pokemon_sauvage_present - [Pikachu@3005,301,3008 owner=null]
+[09:06:28] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS baguette_ouvre_l_editeur - wild
+[09:06:30] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS sauvage_modifie_visible - [✔ espèce → Raichu]
+[09:06:34] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS clic_dans_le_vide_ouvre_mon_equipe - PartyScreen
+[09:06:36] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS import_showdown_emplacement - Garchomp [✔ emplacement 2 : Garchomp nv. 50]
+[09:06:38] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS import_showdown_equipe - [✔ emplacement 3 : Gholdengo nv. 70, emplacement 4 : Dragapult nv. 70]
+[09:06:42] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS equipe_vers_editeur - party
+[09:06:44] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS import_showdown_dans_l_editeur - Raichu [shiny, female, alolan] nv60 [✔ espèce → Raichu, forme → alola, niveau → 60, genre → female, nature → timid, IV hp=31 atk=0 def=31 spa=31 spd=31 spe=31, EV spa=252 spd=4 spe=252, capacités 1:t
+[09:06:44] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS export_showdown - Sparky (Raichu-Alola) (F) @ Leftovers|Ability: Surge Surfer|Level: 60|Shiny: Yes|Happiness: 50|Dynamax Level: 0|Tera Type: Electric|EVs: 252 SpA / 4 SpD / 252 Spe|Timid Nature|IVs: 0 Atk|- Thunderbolt|- Psychic|- F
+[09:06:50] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS ascenseur_saut_monte - x=3025.50 y=307.00 z=3008.50
+[09:06:52] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS ascenseur_hors_portee_reste - x=3025.50 y=307.00 z=3008.50
+[09:06:54] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS ascenseur_accroupi_descend - x=3025.50 y=301.00 z=3008.50
+[09:07:00] [Render thread/INFO]: [CobblePulse-Tools][livetest] PASS baguette_detruite_sans_permission -
+[09:07:02] [Render thread/INFO]: [CobblePulse-Tools][livetest] LIVETEST SUMMARY: 21 pass, 0 fail
+captures : ['client-latest.log', 'client.log', 'live_01_plaques.png', 'live_02_pose.png', 'live_03_editeur_general.png', 'live_04_editeur_stats.png', 'live_05_editeur_capacites.png', 'live_06_editeur_divers.png', 'live_07_editeur_applique.png', 'live_08_baguette_sauvage.png', 'live_09_monde.png', 'live_10_mon_equipe.png', 'live_11_equipe_importee.png', 'live_12_fenetre_showdown.png', 'live_13_editeur_import.png', 'live_14_ascenseur.png', 'server.log', 'steps.txt']

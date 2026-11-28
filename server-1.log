@@ -1,0 +1,297 @@
+Downloading Minecraft server
+Installing Fabric Loader 0.19.5(1.21.1) on the server
+Downloading required files
+Downloading library org.ow2.asm:asm:9.10.1
+Downloading library org.ow2.asm:asm-analysis:9.10.1
+Downloading library org.ow2.asm:asm-commons:9.10.1
+Downloading library org.ow2.asm:asm-tree:9.10.1
+Downloading library org.ow2.asm:asm-util:9.10.1
+Downloading library net.fabricmc:sponge-mixin:0.17.4+mixin.0.8.7
+Downloading library net.fabricmc:intermediary:1.21.1
+Downloading library net.fabricmc:fabric-loader:0.19.5
+Generating server launch JAR
+Unpacking 1.21.1/server-1.21.1.jar (versions:1.21.1) to versions/1.21.1/server-1.21.1.jar
+Unpacking com/github/oshi/oshi-core/6.4.10/oshi-core-6.4.10.jar (libraries:com.github.oshi:oshi-core:6.4.10) to libraries/com/github/oshi/oshi-core/6.4.10/oshi-core-6.4.10.jar
+Unpacking com/google/code/gson/gson/2.10.1/gson-2.10.1.jar (libraries:com.google.code.gson:gson:2.10.1) to libraries/com/google/code/gson/gson/2.10.1/gson-2.10.1.jar
+Unpacking com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar (libraries:com.google.guava:failureaccess:1.0.1) to libraries/com/google/guava/failureaccess/1.0.1/failureaccess-1.0.1.jar
+Unpacking com/google/guava/guava/32.1.2-jre/guava-32.1.2-jre.jar (libraries:com.google.guava:guava:32.1.2-jre) to libraries/com/google/guava/guava/32.1.2-jre/guava-32.1.2-jre.jar
+Unpacking com/mojang/authlib/6.0.54/authlib-6.0.54.jar (libraries:com.mojang:authlib:6.0.54) to libraries/com/mojang/authlib/6.0.54/authlib-6.0.54.jar
+Unpacking com/mojang/brigadier/1.3.10/brigadier-1.3.10.jar (libraries:com.mojang:brigadier:1.3.10) to libraries/com/mojang/brigadier/1.3.10/brigadier-1.3.10.jar
+Unpacking com/mojang/datafixerupper/8.0.16/datafixerupper-8.0.16.jar (libraries:com.mojang:datafixerupper:8.0.16) to libraries/com/mojang/datafixerupper/8.0.16/datafixerupper-8.0.16.jar
+Unpacking com/mojang/logging/1.2.7/logging-1.2.7.jar (libraries:com.mojang:logging:1.2.7) to libraries/com/mojang/logging/1.2.7/logging-1.2.7.jar
+Unpacking commons-io/commons-io/2.15.1/commons-io-2.15.1.jar (libraries:commons-io:commons-io:2.15.1) to libraries/commons-io/commons-io/2.15.1/commons-io-2.15.1.jar
+Unpacking io/netty/netty-buffer/4.1.97.Final/netty-buffer-4.1.97.Final.jar (libraries:io.netty:netty-buffer:4.1.97.Final) to libraries/io/netty/netty-buffer/4.1.97.Final/netty-buffer-4.1.97.Final.jar
+Unpacking io/netty/netty-codec/4.1.97.Final/netty-codec-4.1.97.Final.jar (libraries:io.netty:netty-codec:4.1.97.Final) to libraries/io/netty/netty-codec/4.1.97.Final/netty-codec-4.1.97.Final.jar
+Unpacking io/netty/netty-common/4.1.97.Final/netty-common-4.1.97.Final.jar (libraries:io.netty:netty-common:4.1.97.Final) to libraries/io/netty/netty-common/4.1.97.Final/netty-common-4.1.97.Final.jar
+Unpacking io/netty/netty-handler/4.1.97.Final/netty-handler-4.1.97.Final.jar (libraries:io.netty:netty-handler:4.1.97.Final) to libraries/io/netty/netty-handler/4.1.97.Final/netty-handler-4.1.97.Final.jar
+Unpacking io/netty/netty-resolver/4.1.97.Final/netty-resolver-4.1.97.Final.jar (libraries:io.netty:netty-resolver:4.1.97.Final) to libraries/io/netty/netty-resolver/4.1.97.Final/netty-resolver-4.1.97.Final.jar
+Unpacking io/netty/netty-transport/4.1.97.Final/netty-transport-4.1.97.Final.jar (libraries:io.netty:netty-transport:4.1.97.Final) to libraries/io/netty/netty-transport/4.1.97.Final/netty-transport-4.1.97.Final.jar
+Unpacking io/netty/netty-transport-classes-epoll/4.1.97.Final/netty-transport-classes-epoll-4.1.97.Final.jar (libraries:io.netty:netty-transport-classes-epoll:4.1.97.Final) to libraries/io/netty/netty-transport-classes-epoll/4.1.97.Final/netty-transport-classes-epoll-4.1.97.Final.jar
+Unpacking io/netty/netty-transport-native-epoll/4.1.97.Final/netty-transport-native-epoll-4.1.97.Final-linux-x86_64.jar (libraries:io.netty:netty-transport-native-epoll:4.1.97.Final:linux-x86_64) to libraries/io/netty/netty-transport-native-epoll/4.1.97.Final/netty-transport-native-epoll-4.1.97.Final-linux-x86_64.jar
+Unpacking io/netty/netty-transport-native-epoll/4.1.97.Final/netty-transport-native-epoll-4.1.97.Final-linux-aarch_64.jar (libraries:io.netty:netty-transport-native-epoll:4.1.97.Final:linux-aarch_64) to libraries/io/netty/netty-transport-native-epoll/4.1.97.Final/netty-transport-native-epoll-4.1.97.Final-linux-aarch_64.jar
+Unpacking io/netty/netty-transport-native-unix-common/4.1.97.Final/netty-transport-native-unix-common-4.1.97.Final.jar (libraries:io.netty:netty-transport-native-unix-common:4.1.97.Final) to libraries/io/netty/netty-transport-native-unix-common/4.1.97.Final/netty-transport-native-unix-common-4.1.97.Final.jar
+Unpacking it/unimi/dsi/fastutil/8.5.12/fastutil-8.5.12.jar (libraries:it.unimi.dsi:fastutil:8.5.12) to libraries/it/unimi/dsi/fastutil/8.5.12/fastutil-8.5.12.jar
+Unpacking net/java/dev/jna/jna/5.14.0/jna-5.14.0.jar (libraries:net.java.dev.jna:jna:5.14.0) to libraries/net/java/dev/jna/jna/5.14.0/jna-5.14.0.jar
+Unpacking net/java/dev/jna/jna-platform/5.14.0/jna-platform-5.14.0.jar (libraries:net.java.dev.jna:jna-platform:5.14.0) to libraries/net/java/dev/jna/jna-platform/5.14.0/jna-platform-5.14.0.jar
+Unpacking net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar (libraries:net.sf.jopt-simple:jopt-simple:5.0.4) to libraries/net/sf/jopt-simple/jopt-simple/5.0.4/jopt-simple-5.0.4.jar
+Unpacking org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar (libraries:org.apache.commons:commons-lang3:3.14.0) to libraries/org/apache/commons/commons-lang3/3.14.0/commons-lang3-3.14.0.jar
+Unpacking org/apache/logging/log4j/log4j-api/2.22.1/log4j-api-2.22.1.jar (libraries:org.apache.logging.log4j:log4j-api:2.22.1) to libraries/org/apache/logging/log4j/log4j-api/2.22.1/log4j-api-2.22.1.jar
+Unpacking org/apache/logging/log4j/log4j-core/2.22.1/log4j-core-2.22.1.jar (libraries:org.apache.logging.log4j:log4j-core:2.22.1) to libraries/org/apache/logging/log4j/log4j-core/2.22.1/log4j-core-2.22.1.jar
+Unpacking org/apache/logging/log4j/log4j-slf4j2-impl/2.22.1/log4j-slf4j2-impl-2.22.1.jar (libraries:org.apache.logging.log4j:log4j-slf4j2-impl:2.22.1) to libraries/org/apache/logging/log4j/log4j-slf4j2-impl/2.22.1/log4j-slf4j2-impl-2.22.1.jar
+Unpacking org/joml/joml/1.10.5/joml-1.10.5.jar (libraries:org.joml:joml:1.10.5) to libraries/org/joml/joml/1.10.5/joml-1.10.5.jar
+Unpacking org/lz4/lz4-java/1.8.0/lz4-java-1.8.0.jar (libraries:org.lz4:lz4-java:1.8.0) to libraries/org/lz4/lz4-java/1.8.0/lz4-java-1.8.0.jar
+Unpacking org/slf4j/slf4j-api/2.0.9/slf4j-api-2.0.9.jar (libraries:org.slf4j:slf4j-api:2.0.9) to libraries/org/slf4j/slf4j-api/2.0.9/slf4j-api-2.0.9.jar
+Starting net.fabricmc.loader.impl.game.minecraft.BundlerClassPathCapture
+[09:01:47] [main/INFO]: Loading Minecraft 1.21.1 with Fabric Loader 0.19.5
+[09:01:47] [main/INFO]: Fabric is preparing JARs on first launch, this may take a few seconds...
+[09:01:48] [main/INFO]: Loading 67 mods:
+	- cobblemon 1.8.4+1.21.1
+	   |-- com_ibm_icu_icu4j 71.1
+	   |-- org_graalvm_js_js 22.3.0
+	   |-- org_graalvm_regex_regex 22.3.0
+	   |-- org_graalvm_sdk_graal-sdk 22.3.0
+	   |-- org_graalvm_truffle_truffle-api 22.3.0
+	   |-- org_mongodb_mongodb-driver-core 4.10.2
+	   \-- org_mongodb_mongodb-driver-sync 4.10.2
+	- cobblepulse_tools 1.0.0
+	- fabric-api 0.116.18+1.21.1
+	   |-- fabric-api-base 0.4.42+6573ed8c19
+	   |-- fabric-api-lookup-api-v1 1.6.72+7b3d111d19
+	   |-- fabric-biome-api-v1 13.0.31+d527f9fd19
+	   |-- fabric-block-api-v1 1.1.0+0bc3503219
+	   |-- fabric-block-view-api-v2 1.0.11+ebb2264e19
+	   |-- fabric-command-api-v1 1.2.49+f71b366f19
+	   |-- fabric-command-api-v2 2.2.28+6ced4dd919
+	   |-- fabric-commands-v0 0.2.66+df3654b319
+	   |-- fabric-content-registries-v0 8.0.19+b559734419
+	   |-- fabric-convention-tags-v1 2.1.7+7f945d5b19
+	   |-- fabric-convention-tags-v2 2.12.0+c3656daa19
+	   |-- fabric-crash-report-info-v1 0.2.29+0af3f5a719
+	   |-- fabric-data-attachment-api-v1 1.4.7+5b36e0f719
+	   |-- fabric-data-generation-api-v1 20.3.1+7439032a19
+	   |-- fabric-dimensions-v1 4.0.1+65213ef819
+	   |-- fabric-entity-events-v1 1.8.0+2b27e0a419
+	   |-- fabric-events-interaction-v0 0.7.14+ba9dae0619
+	   |-- fabric-game-rule-api-v1 1.0.53+6ced4dd919
+	   |-- fabric-item-api-v1 11.3.0+467044f319
+	   |-- fabric-item-group-api-v1 4.1.7+def88e3a19
+	   |-- fabric-lifecycle-events-v1 2.6.0+0865547519
+	   |-- fabric-loot-api-v2 3.0.15+3f89f5a519
+	   |-- fabric-loot-api-v3 1.0.3+3f89f5a519
+	   |-- fabric-message-api-v1 6.0.14+8aaf3aca19
+	   |-- fabric-networking-api-v1 4.3.1+d30f6a7919
+	   |-- fabric-object-builder-api-v1 15.2.1+40875a9319
+	   |-- fabric-particles-v1 4.0.2+6573ed8c19
+	   |-- fabric-recipe-api-v1 5.0.16+2475392c19
+	   |-- fabric-registry-sync-v0 5.3.2+e3eddc2119
+	   |-- fabric-rendering-data-attachment-v1 0.3.49+73761d2e19
+	   |-- fabric-rendering-fluids-v1 3.1.6+1daea21519
+	   |-- fabric-resource-conditions-api-v1 4.4.0+7439032a19
+	   |-- fabric-resource-loader-v0 1.3.1+5b5275af19
+	   |-- fabric-screen-handler-api-v1 1.3.91+b559734419
+	   |-- fabric-tag-api-v1 1.3.0+1eb36c0719
+	   |-- fabric-transfer-api-v1 5.4.5+9eaf054019
+	   \-- fabric-transitive-access-wideners-v1 6.2.0+45b9699719
+	- fabric-language-kotlin 1.14.2+kotlin.2.4.21
+	   |-- org_jetbrains_kotlin_kotlin-reflect 2.4.21
+	   |-- org_jetbrains_kotlin_kotlin-stdlib 2.4.21
+	   |-- org_jetbrains_kotlin_kotlin-stdlib-jdk7 2.4.21
+	   |-- org_jetbrains_kotlin_kotlin-stdlib-jdk8 2.4.21
+	   |-- org_jetbrains_kotlinx_atomicfu-jvm 0.33.0
+	   |-- org_jetbrains_kotlinx_kotlinx-coroutines-core-jvm 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-coroutines-jdk8 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-datetime-jvm 0.8.0
+	   |-- org_jetbrains_kotlinx_kotlinx-io-bytestring-jvm 0.9.1
+	   |-- org_jetbrains_kotlinx_kotlinx-io-core-jvm 0.9.1
+	   |-- org_jetbrains_kotlinx_kotlinx-serialization-cbor-jvm 1.11.0
+	   |-- org_jetbrains_kotlinx_kotlinx-serialization-core-jvm 1.11.0
+	   \-- org_jetbrains_kotlinx_kotlinx-serialization-json-jvm 1.11.0
+	- fabricloader 0.19.5
+	   \-- mixinextras 0.5.5
+	- java 21
+	- luckperms 5.4.140
+	   \-- fabric-permissions-api-v0 0.3.1
+	- minecraft 1.21.1
+[09:01:48] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.7 Source=file:/home/runner/work/cobblepulse-tools/cobblepulse-tools/run-server/libraries/net/fabricmc/sponge-mixin/0.17.4+mixin.0.8.7/sponge-mixin-0.17.4+mixin.0.8.7.jar Service=Knot/Fabric Env=SERVER
+[09:01:49] [main/WARN]: Error loading class: juuxel/adorn/block/variant/BlockVariantSets (java.lang.ClassNotFoundException: juuxel/adorn/block/variant/BlockVariantSets)
+[09:01:49] [main/WARN]: @Mixin target juuxel.adorn.block.variant.BlockVariantSets was not found mixins.cobblemon-common.json:invoker.AdornRegisterInvoker from mod cobblemon
+[09:01:49] [main/WARN]: Error loading class: net/minecraft/class_1140 (java.lang.ClassNotFoundException: net/minecraft/class_1140)
+[09:01:49] [main/WARN]: @Mixin target net.minecraft.class_1140 was not found mixins.cobblemon-fabric.json:FabricSoundEngineMixin from mod cobblemon
+[09:01:49] [main/INFO]: Initializing MixinExtras via com.llamalad7.mixinextras.service.MixinExtrasServiceImpl(version=0.5.5).
+[09:01:55] [main/INFO]: Booting LaxPermissionValidator, permissions will be checked using Minecrafts permission level system, see https://minecraft.wiki/w/Permission_level
+[09:01:55] [main/INFO]: Launching Cobblemon 1.8.4 
+[09:01:55] [main/INFO]: Booting FabricPermissionValidator, permissions will be checked using fabric-permissions-api, see https://github.com/lucko/fabric-permissions-api
+[09:01:56] [main/ERROR]: No data fixer registered for cobblemon:pokemon
+[09:01:56] [main/ERROR]: No data fixer registered for cobblemon:empty_pokeball
+[09:01:56] [main/ERROR]: No data fixer registered for cobblemon:boat
+[09:01:56] [main/ERROR]: No data fixer registered for cobblemon:chest_boat
+[09:01:56] [main/ERROR]: No data fixer registered for cobblemon:poke_bobber
+[09:01:56] [main/ERROR]: No data fixer registered for cobblemon:generic_bedrock
+[09:01:56] [main/ERROR]: No data fixer registered for cobblemon:npc
+[09:01:57] [main/INFO]: Starting the Best Spawner...
+[09:01:57] [main/INFO]: Loaded 7 spawning condition types.
+[09:01:57] [main/INFO]: Loaded 6 spawnable position types.
+[09:01:57] [main/INFO]: Loaded 4 spawn detail types.
+[09:01:57] [Cobblemon Showdown/INFO]: Starting showdown service...
+[09:02:00] [Cobblemon Showdown/INFO]: Showdown has been started!
+[09:02:00] [main/INFO]: Note: Cobblemon data registries are only loaded once per server instance as Pokémon species are not safe to reload.
+[09:02:00] [main/INFO]: Registered the cobblemon:molang registry
+[09:02:00] [main/INFO]: Registered the cobblemon:species_features registry
+[09:02:00] [main/INFO]: Registered the cobblemon:global_species_features registry
+[09:02:00] [main/INFO]: Registered the cobblemon:species_feature_assignments registry
+[09:02:00] [main/INFO]: Registered the cobblemon:action_effects registry
+[09:02:00] [main/INFO]: Registered the cobblemon:moves registry
+[09:02:00] [main/INFO]: Registered the cobblemon:moveset_builders registry
+[09:02:00] [main/INFO]: Registered the cobblemon:abilities registry
+[09:02:00] [main/INFO]: Registered the cobblemon:behaviours registry
+[09:02:00] [main/INFO]: Registered the cobblemon:marks registry
+[09:02:00] [main/INFO]: Registered the cobblemon:species registry
+[09:02:00] [main/INFO]: Registered the cobblemon:species_additions registry
+[09:02:00] [main/INFO]: Registered the cobblemon:pokeballs registry
+[09:02:00] [main/INFO]: Registered the cobblemon:properties_tab_completion registry
+[09:02:00] [main/INFO]: Registered the cobblemon:party_pools registry
+[09:02:00] [main/INFO]: Registered the cobblemon:party_compositions registry
+[09:02:00] [main/INFO]: Registered the cobblemon:spawn_detail_presets registry
+[09:02:00] [main/INFO]: Registered the cobblemon:spawn_rules registry
+[09:02:00] [main/INFO]: Registered the cobblemon:mechanics registry
+[09:02:00] [main/INFO]: Registered the cobblemon:bag_items registry
+[09:02:00] [main/INFO]: Registered the cobblemon:held_items registry
+[09:02:00] [main/INFO]: Registered the cobblemon:dialogues registry
+[09:02:00] [main/INFO]: Registered the cobblemon:natural_materials registry
+[09:02:00] [main/INFO]: Registered the cobblemon:fossils registry
+[09:02:00] [main/INFO]: Registered the cobblemon:npc_preset registry
+[09:02:00] [main/INFO]: Registered the cobblemon:npc registry
+[09:02:00] [main/INFO]: Registered the cobblemon:dex_entries registry
+[09:02:00] [main/INFO]: Registered the cobblemon:dex_entry_additions registry
+[09:02:00] [main/INFO]: Registered the cobblemon:dexes registry
+[09:02:00] [main/INFO]: Registered the cobblemon:dex_additions registry
+[09:02:00] [main/INFO]: Registered the cobblemon:cosmetic_items registry
+[09:02:00] [main/INFO]: Registered the cobblemon:callbacks registry
+[09:02:00] [main/INFO]: Registered the cobblemon:unlockable_pc_box_wallpapers registry
+[09:02:00] [main/INFO]: Registered the cobblemon:starters registry
+[09:02:00] [main/INFO]: Registered the cobblemon:spawn_pool_world registry
+[09:02:00] [main/INFO]: Registered the cobblemon:pokerods registry
+[09:02:00] [main/INFO]: Registered the cobblemon:berries registry
+[09:02:00] [main/INFO]: Registered the cobblemon:habitat_pools registry
+[09:02:00] [main/INFO]: Registered the cobblemon:seasonings registry
+[09:02:00] [main/INFO]: Registered the cobblemon:pokemon_interactions registry
+[09:02:00] [main/INFO]: Registered the cobblemon:spawn_bait_effects registry
+[09:02:00] [main/INFO]: Registered the cobblemon:ride_settings registry
+[09:02:00] [main/INFO]: Registered the cobblemon:technical_machines registry
+[09:02:00] [main/INFO]: [CobblePulse-Tools] Movement Plate, Stick Plate et Baguette d'édition prêtes (vitesse des plaques : 0.6)
+[09:02:03] [main/INFO]: Environment: Environment[sessionHost=https://sessionserver.mojang.com, servicesHost=https://api.minecraftservices.com, name=PROD]
+[09:02:03] [main/INFO]: No existing world data, creating new world
+[09:02:04] [main/INFO]: Loaded 2082 recipes
+[09:02:05] [main/INFO]: Loaded 2213 advancements
+[09:02:05] [main/INFO]: Loaded 11 server scripts and 1 client scripts
+[09:02:08] [main/INFO]: Loaded 936 moves
+[09:02:08] [main/INFO]: Loaded 314 abilities
+[09:02:08] [main/INFO]: Loaded 49 entity behaviours
+[09:02:08] [main/INFO]: Loaded 168 marks
+[09:02:09] [main/INFO]: Finished additions
+[09:02:09] [cobblemon Datafixer Bootstrap/INFO]: 6 Datafixer optimizations took 31 milliseconds
+[09:02:10] [main/INFO]: Loaded 1025 Pokémon species
+[09:02:10] [main/INFO]: Loaded 0 party compositions.
+[09:02:10] [main/INFO]: Loaded 22 spawn detail presets.
+[09:02:10] [main/INFO]: Starting dummy Showdown battle to force it to pre-load data.
+[09:02:11] [main/INFO]: Imported 266 held item IDs from showdown
+[09:02:11] [main/INFO]: Loaded 15 fossils
+[09:02:12] [main/INFO]: Loaded 8 callbacks and 0 client callbacks
+[09:02:14] [main/INFO]: Loaded 70 berries
+[09:02:14] [main/INFO]: Loaded 167 Pokémon interaction sets
+[09:02:16] [main/INFO]: Applied 985 biome modifications to 64 of 64 new biomes in 23.18 ms
+[09:02:16] [Server thread/INFO]:         __    
+[09:02:16] [Server thread/INFO]:   |    |__)   LuckPerms v5.4.140
+[09:02:16] [Server thread/INFO]:   |___ |      Running on Fabric - fabric@0.116.18+1.21.1
+[09:02:16] [Server thread/INFO]: 
+[09:02:16] [Server thread/INFO]: Loading configuration...
+[09:02:16] [Server thread/INFO]: Loading storage provider... [H2]
+[09:02:16] [Server thread/INFO]: Loading internal permission managers...
+[09:02:16] [Server thread/INFO]: Performing initial data load...
+[09:02:16] [Server thread/INFO]: Successfully enabled. (took 609ms)
+[09:02:16] [Server thread/INFO]: Starting minecraft server version 1.21.1
+[09:02:16] [Server thread/INFO]: Loading properties
+[09:02:16] [Server thread/INFO]: Default game type: SURVIVAL
+[09:02:16] [Server thread/INFO]: Generating keypair
+[09:02:16] [Server thread/INFO]: Starting Minecraft server on *:25565
+[09:02:16] [Server thread/INFO]: Using epoll channel type
+[09:02:17] [Server thread/WARN]: **** SERVER IS RUNNING IN OFFLINE/INSECURE MODE!
+[09:02:17] [Server thread/WARN]: The server will make no attempt to authenticate usernames. Beware.
+[09:02:17] [Server thread/WARN]: While this makes the game possible to play without internet access, it also opens up the ability for hackers to connect with any username they choose.
+[09:02:17] [Server thread/WARN]: To change this, set "online-mode" to "true" in the server.properties file.
+[09:02:17] [Server thread/INFO]: Preparing level "world"
+[09:02:26] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[09:02:26] [Worker-Main-1/INFO]: Preparing spawn area: 2%
+[09:02:26] [Worker-Main-3/INFO]: Preparing spawn area: 2%
+[09:02:27] [Worker-Main-3/INFO]: Preparing spawn area: 2%
+[09:02:27] [Worker-Main-2/INFO]: Preparing spawn area: 2%
+[09:02:28] [Worker-Main-3/INFO]: Preparing spawn area: 2%
+[09:02:28] [Worker-Main-2/INFO]: Preparing spawn area: 8%
+[09:02:29] [Worker-Main-2/INFO]: Preparing spawn area: 10%
+[09:02:29] [Worker-Main-1/INFO]: Preparing spawn area: 18%
+[09:02:30] [Worker-Main-2/INFO]: Preparing spawn area: 18%
+[09:02:30] [Worker-Main-1/INFO]: Preparing spawn area: 51%
+[09:02:31] [Worker-Main-1/INFO]: Preparing spawn area: 51%
+[09:02:31] [Worker-Main-2/INFO]: Preparing spawn area: 51%
+[09:02:32] [Worker-Main-1/INFO]: Preparing spawn area: 51%
+[09:02:32] [Server thread/INFO]: Time elapsed: 6523 ms
+[09:02:32] [Server thread/INFO]: Done (15.512s)! For help, type "help"
+[09:02:32] [Server thread/INFO]: Optimizing spawn pools...
+[09:02:36] [Server thread/WARN]: Skipping Entity with id cobblemon_pokemon_entity_placeholder
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS blocs_et_objets
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS recette_movement_plate - cobblepulse_tools:movement_plate
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS recette_stick_plate - cobblepulse_tools:stick_plate
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS baguette_sans_recette
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS recette_ascenseur - cobblepulse_tools:elevator
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS loot_movement_plate - [1 cobblepulse_tools:movement_plate]
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS pioche_movement_plate
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS loot_stick_plate - [1 cobblepulse_tools:stick_plate]
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS pioche_stick_plate
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS loot_elevator - [1 cobblepulse_tools:elevator]
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS pioche_elevator
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS advancement_movement_plate
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS advancement_stick_plate
+[09:02:43] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS advancement_elevator
+[09:02:43] [Server thread/WARN]: Can't keep up! Is the server overloaded? Running 6268ms or 125 ticks behind
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS stick_plate_ralentit - 0.4
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS ascenseur_monte_au_suivant - class_2338{x=2036, y=207, z=2014}
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS ascenseur_saute_l_obstrue - class_2338{x=2036, y=214, z=2014}
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS ascenseur_portee_max - null class_2338{x=2036, y=232, z=2014} null
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS ascenseur_descend - class_2338{x=2036, y=207, z=2014} null
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS boucle_detectee_a_la_pose
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS boucle_face_a_face
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS baguette_retrouve_le_sauvage
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS fiche_pokemon - {"uuid":"c17dffb4-f7b5-4adf-8729-c0b644d72de2","species":"cobblemon:pikachu","form":"","level":10,"max_level":100,"shiny":false,"gender":"female","nature":"cobblemon:sassy","minted":"","ability":"static","ivs":{"hp":11,"atk":16,"def":12,"spa":23,"spd":28,"spe":3},"evs":{"hp":0,"atk":0,"def":0,"spa":0,"spd":0,"spe":0},"moves":["quickattack","doubleteam","thunderwave","nuzzle"],"held":"","ball":"cobblemon:poke_ball","nickname":"","tera":"cobblemon:electric","friendship":100,"dmax":0,"gmax":false,"tradeable":true,"hp":28,"max_hp":28,"ot":""}
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS edition_complete - Raichu nv50 shiny modest lightningrod [thunderbolt, voltswitch, focusblast, nastyplot] iv=true ev=252/4 held=1 cobblemon:leftovers ball=cobblemon:ultra_ball nick=literal{Testeur} tera=cobblemon:fairy friend=200 dmax=5 gmax=false changed=[espèce → Raichu, niveau → 50, chromatique, nature → modest, talent → lightningrod, IV hp=31 atk=31 def=31 spa=31 spd=31 spe=31, EV hp=4 spa=252 spe=252, capacités 1:thunderbolt 2:voltswitch 3:focusblast 4:nastyplot, objet tenu → cobblemon:leftovers, Ball → ultra_ball, surnom → Testeur, Téra → fairy, bonheur → 200, Dynamax → 5] erreurs=[]
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS gigamax - true [] / false [Facteur Gigamax impossible pour Raichu]
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS valeurs_refusees - [Espèce inconnue : cobblemon:pasunpokemon, Niveau 5000 hors limites (1 à 100), Genre genderless impossible pour Raichu, Total d'EV 1200 > 510 : EV inchangés, Capacité en double : thunderbolt (capacités inchangées), Bonheur 999 hors limites (0 à 255)]
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS forme_genre_menthe_talent - alola [female, alolan] FEMALE levitate []
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS showdown_lecture - {"species":"cobblemon:raichu","form":"alola","nickname":"Sparky","gender":"female","held":"cobblemon:leftovers","ability":"surgesurfer","tera":"cobblemon:electric","nature":"cobblemon:timid","level":60,"shiny":true,"evs":{"hp":0,"atk":0,"def":0,"spa":252,"spd":4,"spe":252},"ivs":{"hp":31,"atk":0,"def":31,"spa":31,"spd":31,"spe":31},"moves":["thunderbolt","psychic","focusblast","nastyplot"]} []
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS showdown_creation - Raichu nv60 shiny timid surgesurfer [thunderbolt, psychic, focusblast, nastyplot] []
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS showdown_export_relu_identique - Sparky (Raichu-Alola) (F) @ Leftovers|Ability: Surge Surfer|Level: 60|Shiny: Yes|Happiness: 50|Dynamax Level: 0|Tera Type: Electric|EVs: 252 SpA / 4 SpD / 252 Spe|Timid Nature|IVs: 0 Atk|- Thunderbolt|- Psychic|- Focus Blast|- Nasty Plot -> {"species":"cobblemon:raichu","form":"alola","nickname":"Sparky","gender":"female","held":"cobblemon:leftovers","ability":"surgesurfer","friendship":50,"dmax":0,"tera":"cobblemon:electric","nature":"cobblemon:timid","level":60,"shiny":true,"evs":{"hp":0,"atk":0,"def":0,"spa":252,"spd":4,"spe":252},"ivs":{"hp":31,"atk":0,"def":31,"spa":31,"spd":31,"spe":31},"moves":["thunderbolt","psychic","focusblast","nastyplot"]} []
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS showdown_equipe - 2 {"species":"cobblemon:garchomp","form":"","nickname":"","held":"cobblemon:choice_scarf","ability":"roughskin","nature":"cobblemon:jolly","level":100,"shiny":false,"evs":{"hp":0,"atk":252,"def":0,"spa":0,"spd":4,"spe":252},"ivs":{"hp":31,"atk":31,"def":31,"spa":31,"spd":31,"spe":31},"moves":["earthquake","outrage"]} []
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS showdown_espece_inconnue - [Espèce inconnue : « Pasunpokemon »]
+[09:02:44] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS retour_forme_de_base - [female] []
+[09:02:45] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS entite_mise_a_jour - cobblemon:raichu [shiny, female]
+[09:02:46] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS mob_pousse_vers_le_nord - x=2020.50 z=2014.43 v=0.000
+[09:02:47] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS chaine_puis_stick_plate - x=2005.09 z=2000.50 v=0.000
+[09:02:47] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS elan_apres_la_chaine - x=2004.65 z=2004.50 v=0.000
+[09:02:47] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS ouest_et_recentrage - x=2008.15 z=2008.51 v=0.000
+[09:02:50] [Server thread/INFO]: [CobblePulse-Tools][selftest] PASS boucle_arretee_en_jeu - x=2030.87 z=2000.90 v=0.000
+[09:02:51] [Server thread/INFO]: [CobblePulse-Tools][selftest] SELFTEST SUMMARY: 39 pass, 0 fail
+[09:02:51] [Server thread/INFO]: [CobblePulse-Tools][selftest] SELFTEST DONE
+[09:02:51] [Server thread/INFO]: [Tools] tools.json rechargé.
+[09:02:58] [Server thread/INFO]: Stopping the server
+[09:02:58] [Server thread/INFO]: Starting shutdown process...
+[09:02:58] [Server thread/INFO]: Closing storage...
+[09:02:58] [Server thread/INFO]: Goodbye!
+[09:02:58] [Server thread/INFO]: Stopping server
+[09:02:58] [Server thread/INFO]: Saving players
+[09:02:58] [Server thread/INFO]: Saving worlds
+[09:02:58] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[09:02:58] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[09:02:58] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[09:02:58] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[09:02:58] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[09:02:58] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[09:02:58] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
